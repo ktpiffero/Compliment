@@ -1,4 +1,8 @@
 import random
+import webapp2
+import jinja2
+import os
+
 
 accomplishments = ["You should be proud of yourself.",
                    "You are making a difference.",
@@ -64,3 +68,16 @@ personal_traits = ["You have impeccable manners.",
                    "You're so thoughtful."]
 
 print(random.choice(personal_traits))
+
+app = webapp2.WSGIApplication([
+    ('/accomplishments', ShowAccomplishmentsHandler),
+    ('/appearance', ShowAppearanceHandler),
+    ('/personal_traits', ShowPersonalTraitsHandler),
+    ('/for_him', ShowForHimHandler),
+    ('/for_her', ShowForHerHandler),
+    
+], debug=True)
+    
+    
+    
+    
