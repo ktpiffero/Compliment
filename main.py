@@ -10,7 +10,6 @@ the_jinja_env = jinja2.Environment(
 
 class accomplishments(webapp2.RequestHandler):
     def get(self):  
-        results_template = the_jinja_env.get_template('templates/accomplishments.html')
         accomplishments = { "accomplishment1":"You should be proud of yourself.",
                             "accomplishment2":"You are making a difference.",
                             "accomplishment3":"You deserve a hug right now.",
@@ -18,6 +17,7 @@ class accomplishments(webapp2.RequestHandler):
                             "accomolishment5":"Actions speak louder than words, and yours tell an incredible story.",
                             "accomolishment6":"You are a gritty person."}
         self.response.write(results_template.render(accomplishments))
+        accomplishments_template = the_jinja_env.get_template('templates/accomplishments.html')
               
 class appearance(webapp2.RequestHandler):
     def get(self):  
@@ -27,14 +27,13 @@ class appearance(webapp2.RequestHandler):
                       "appearance3":"That color looks great on you.",
                       "appearance4":"You have a beautiful smile."}
         self.response.write(results_template.render(appearance))
-
+        appearance_template = the_jinja_env.get_template('templates/appearance.html')
 
 for_her_noun1 = ["hair", "shirt", "makeup"]
 for_her_adj1 = ["great", "nice", "stunning"]
 
 class for_her2(webapp2.RequestHandler):
     def get(self):  
-        results_template = the_jinja_env.get_template('templates/for_her2.html')
         for_her2 = {"for_her1":"stunning",
                     "for_her2":"beautiful",
                     "for_her3":"gorgeous",
@@ -45,10 +44,9 @@ class for_her2(webapp2.RequestHandler):
                     
         }
         self.response.write("You look " + results_template.render(for_her))
-
+        for_her_template = the_jinja_env.get_template('templates/for_her.html')
 class for_him(webapp2.RequestHandler):
-    def get(self):  
-        results_template = the_jinja_env.get_template('templates/for_him.html')
+    def get(self)  
         for_him =  {"for_him1":"smart.", 
            "for_him2":"a great listener.",
            "for_him3":"very strong.", 
@@ -58,10 +56,11 @@ class for_him(webapp2.RequestHandler):
            "for_him7":"a great friend.", 
            "for_him8":"handsome."}
         self.response.write("You're " +  str(results_template.render(random.choice(for_him)))
+        for_him_template = the_jinja_env.get_template('templates/for_him.html')
 
 class personal_traits(webapp2.RequestHandler):
     def get(self):  # for a get request
-        results_template = the_jinja_env.get_template('templates/personal_traits.html')
+        results_template = the_jinja_env.get_template('/personal_traits.html')
         personal_traits = {"trait1":"You have impeccable manners.",
                              "trait2":"I like your style.",
                              "trait3":"You're strong.",
@@ -74,17 +73,24 @@ class personal_traits(webapp2.RequestHandler):
                              "trait10":"You're inspiring.",
                              "trait11":"You're so thoughtful."}
         self.response.write(results_template.render(personal_traits))
-        self.response.write("personal_traits handled request")
+        personal_trait_stemplate = the_jinja_env.get_template('templates/personal_traits.html')
+
+def post(self):
+    accomplishments_template = the_jinja_env.get_template('templates/accomplishments.html')
+    appearance_template = the_jinja_env.get_template('templates/appearance.html')
+    personal_traits_template = the_jinja_env.get_template('templates/personal_traits.html')
+    for_her_template = the_jinja_env.get_template('templates/for_her.html')
+    for_him_template = the_jinja_env.get_template('templates/for_him.html')
 
 
 app = webapp2.WSGIApplication([
     ('/personaltraits', personal_traits),
     ('/mytraits', mytraits),
-    ('/personal_traits', ShowPersonalTraitsHandler),
-    ('/accomplishments', ShowAccomplishmentsHandler),
-    ('/appearance', ShowAppearanceHandler),
-    ('/personal_traits', ShowPersonalTraitsHandler),
-    ('/for_him', ShowForHimHandler),
-    ('/for_her', ShowForHerHandler),
+    ('/personal_traits', personal_traits),
+    ('/accomplishments', accomplishments),
+    ('/appearance', appearance),
+    ('/for_him', for_him),
+    ('/for_her', for_her),
+
    
 ], debug=True)
