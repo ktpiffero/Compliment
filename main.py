@@ -9,29 +9,32 @@ the_jinja_env = jinja2.Environment(
     autoescape=True)
 
 class EnterInfoHandler(webapp2.RequestHandler):
-    def get(self)
-        welcome_template = the_jinja_env.get_template('template/welcome.html')
+    def get(self): 
+        welcome_template = the_jinja_env.get_template('templates/welcome.html')
         
         self.response.write(welcome_template.render())
+
+
 
 class accomplishments(webapp2.RequestHandler):
     def get(self):  
         results_template = the_jinja_env.get_template('templates/accomplishments.html')
-        accomplishments = [ "You should be proud of yourself.",
+        accomplishments = ["You should be proud of yourself.",
                             "You are making a difference.",
                             "You deserve a hug right now.",
                             "You're a great example to others.",
                             "Actions speak louder than words, and yours tell an incredible story.",
                             "You are a gritty person."]
-                            
-        random_acp = random.choice(accomplishments)
         
-        new_dict = {"acc":random_accomplishment
-
+        random_acp = random.choice(accomplishments)
+        new_dict = {
+            "acc":random_acp,
+            
         }
-                            
-        self.response.write(results_template.render(random.choice(random_acp)))
-             
+        
+        self.response.write(results_template.render(new_dict))
+        
+
 class appearance(webapp2.RequestHandler):
     def get(self):  
         results_template = the_jinja_env.get_template('templates/appearance.html')
@@ -39,53 +42,57 @@ class appearance(webapp2.RequestHandler):
                       "How is it that you always look so great?",
                       "That color looks great on you.",
                       "You have a beautiful smile."]
-         
-        random_appearance = random.choice(appearance)
         
-        new_dict = {"appearance":random_appearance
-        
+        random_acp1 = random.choice(appearance)
+        new_dict1 = {
+            "acc1":random_acp1,
         }
-        self.response.write(results_template.render(random.choice(appearance)))
+        self.response.write(results_template.render(new_dict1))
 
 
-class for_her2(webapp2.RequestHandler):
+
+class for_her(webapp2.RequestHandler):
     def get(self):  
-        results_template = the_jinja_env.get_template('templates/for_her2.html')
-        for_her2 = ["You look stunning",
+        results_template = the_jinja_env.get_template('templates/for_her.html')
+        for_her = ["You look stunning",
                     "You're beautiful",
                     "You're gorgeous",
                     "You look pretty",
                     "You're awesome",
                     "You look spectacular",
-                    "You are amazing"
-                    
-        ]
-        
-        random_for_her2 = random.choice(for_her2)
-        
-        new_dict = {"for_her":for_her}
-        self.response.write(results_template.render(for_her))
+                    "You are amazing"]
+    
+        random_acp2 = random.choice(for_her)
+        new_dict3 = {
+            "acc2":random_acp2,
+        }
+    
+        self.response.write(results_template.render(new_dict3))
+
 
 class for_him(webapp2.RequestHandler):
     def get(self):  
         results_template = the_jinja_env.get_template('templates/for_him.html')
-        for_him =  ["You are really smart.", 
-           "You're a great listener.",
-           "You're so strong.", 
-           "You are a great brother.",
-           "You are such a hard worker.", 
-           "You are very talented.", 
-           "You're a great friend.", 
-           "You're handsome."]
-           
-        random_for_him = random.choice(for_him)
+        for_him = ["You are really smart.", 
+                    "You're a great listener.",
+                    "You're so strong.", 
+                    "You are a great brother.",
+                    "You are such a hard worker.", 
+                    "You are very talented.", 
+                    "You're a great friend.", 
+                     "You're handsome."]
         
-        new_dict = {"for_him":random_for_him}
+        random_acp3 = random.choice(for_him)
+        new_dict4 = {
+            "acc3":random_acp3,
+            
+        }
         
-        self.response.write(str(results_template.render(random.choice(for_him)))
+        self.response.write(results_template.render(new_dict4))
+
 
 class personal_traits(webapp2.RequestHandler):
-    def get(self):  # for a get request
+    def get(self):
         results_template = the_jinja_env.get_template('templates/personal_traits.html')
         personal_traits = ["You have impeccable manners.",
                              "I like your style.",
@@ -99,19 +106,21 @@ class personal_traits(webapp2.RequestHandler):
                              "You're inspiring.",
                              "You're so thoughtful."]
         
-         random_pt = random.choice(personal_traits)
+        random_acp4 = random.choice(personal_traits)
+        new_dict5 = {
+            "acc4":random_acp4
+            
+        }
         
-        new_dict = {"random_pt":random_personal_traits}
-        self.response.write(results_template.render(personal_traits))
-
+        self.response.write(results_template.render(new_dict5))
 
 
 app = webapp2.WSGIApplication([
-    ('/', EnterInfoHandler)
-    ('/personal_traits', personal_traits),
+    ('/', EnterInfoHandler),
     ('/accomplishments', accomplishments),
-    ('/appearance', appearance,
-    ('/for_him', for_him),
+    ('/appearance', appearance),
     ('/for_her', for_her),
+    ('/for_him', for_him),
+    ('/personal_traits', personal_traits),
    
 ], debug=True)
