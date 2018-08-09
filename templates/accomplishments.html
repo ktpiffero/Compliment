@@ -3,14 +3,19 @@
   <head>
     <title>Accomplishments</title>
     <style>
+      body{
+      background-color: black;
+    }
       h2 {
         position: absolute;
+        top: 250px;
         left: 0;
         right: 0;
         margin: 15px 0;
         padding: 0 5px;
         font-family: arial;
-        color: green;
+        font-size: 100px;
+        color: gold;
         
       }
       #line1 {
@@ -23,11 +28,19 @@
     </style>
   </head>
   <body>
-    <h1>Accomplishments</h1>
     <div>
-    
-      <h2 id="acc">{{acc}}</h2>
-    
+      <h2 id="acc"><center>{{acc}}</center></h2>
       </div>
+      <script type="text/javascript">
+    var color_text= document.getElementById('acc');
+    var color_ary = new Array('#F90','#60F','#6C0','#03C','#C30','#0F0','#90F','#06F','#300','#990'); // array of 10 colors
+    function colr(){
+    var d = new Date();
+    var sec = d.getSeconds() % 10;
+    color_text.style.color = color_ary[sec];
+    setTimeout('colr()', 1000);    
+    }
+   window.addEventListener('onload', colr())
+   </script>
   </body>
 </html>
