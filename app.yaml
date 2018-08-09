@@ -3,8 +3,11 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /img
+  static_dir: img
 - url: /.*
   script: main.app
+
   
 libraries:
 - name: webapp2
